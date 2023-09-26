@@ -1,7 +1,25 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
+#include <eigen3/Eigen/Dense>
+
+using Eigen::Vector3d;
+using Eigen::Matrix3d;
 
 int main()
 {
+
+    // testing Eigen include
+    Vector3d vect = Vector3d::Random();
+    std::cout << vect << std::endl;
+
+    Matrix3d matrix = Matrix3d::Random();
+    std::cout << matrix << std::endl;
+
+    std::cout << matrix * vect << std::endl;
+
+
+
+
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
