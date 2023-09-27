@@ -5,7 +5,7 @@ from sphere import Sphere
 
 
 if __name__ == '__main__':
-    my_camera = Camera(720, 480, [0, 0, 0], [0, 0, 0], 1)
+    my_camera = Camera(720, 480, [0, 0, 0], [0, 0, 0], focal_length=0.050)
     my_camera.updateImagePlacement()
 
     my_sphere = Sphere([0, 0, 3], 0.5)

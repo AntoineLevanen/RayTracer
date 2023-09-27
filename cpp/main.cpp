@@ -5,24 +5,23 @@
 using Eigen::Vector3d;
 using Eigen::Matrix3d;
 
+#include "renderer.hpp"
+
 int main()
 {
+    // window and image dimention
+    const unsigned width = 300;
+    const unsigned height = 200;
 
-    // testing Eigen include
-    Vector3d vect = Vector3d::Random();
-    std::cout << vect << std::endl;
+    // render engine
+    Renderer my_renderer(width, height);
+    sf::Texture my_texture = my_renderer.renderImage();
+    sf::Sprite my_sprite;
+    my_sprite.setTexture(my_texture);
 
-    Matrix3d matrix = Matrix3d::Random();
-    std::cout << matrix << std::endl;
-
-    std::cout << matrix * vect << std::endl;
-
-
-
-
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    // creating SFML window
+    sf::RenderWindow window(sf::VideoMode(width, height), "Ray Tracer");
+    window.setFramerateLimit(60);
 
     while (window.isOpen())
     {
@@ -34,7 +33,7 @@ int main()
         }
 
         window.clear();
-        window.draw(shape);
+        window.draw(my_sprite);
         window.display();
     }
 
