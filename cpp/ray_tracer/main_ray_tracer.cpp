@@ -1,10 +1,21 @@
+#include "rtweekend_constants.h"
+
 #include "color.h"
-#include "vec3.h"
-#include "ray.h"
+#include "hittable.h"
+#include "hittable_list.h"
+#include "sphere.h"
 
 #include <iostream>
 
-color ray_color(const ray &r){
+
+color ray_color(const ray &r, const hittable &world){
+    // objects color
+    hit_record rec;
+    if (world.hit(r, 0, infinity, rec)){
+        return 0.5 * (rec.normal + color(1, 1, 1));
+    }
+    
+    // background color
     vec3 unit_direction = unit_vector(r.direction());
     auto a = 0.5 * (unit_direction.y() + 1.0);
     return (1.0 - a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
@@ -14,11 +25,17 @@ int main(){
 
     // Image informations
     auto aspect_ratio = 16.0 / 9.0;
-    unsigned image_width = 400;
+    unsigned image_width = 1920;
     
     //calculate the image height, and ensure that it's at least 1
     int image_height = static_cast<int>(image_width / aspect_ratio);
     image_height = (image_height < 1) ? 1 : image_height;
+
+    // World
+    hittable_list world;
+
+    world.add(make_shared<sphere>(point3(0, 0, -1), 0.5));
+    world.add(make_shared<sphere>(point3(0, -100.5, -1), 100));
 
     // Camera
     // viewport widths less than one are ok since they are real valued
@@ -50,7 +67,7 @@ int main(){
             auto ray_direction = pixel_center - camera_center;
             ray r(camera_center, ray_direction);
 
-            color pixel_color = ray_color(r);
+            color pixel_color = ray_color(r, world);
             write_color(std::cout, pixel_color);
         }
     }
