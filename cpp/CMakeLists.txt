@@ -9,6 +9,8 @@ set(SRCS
     
 set(HEADERS
     ray_tracer/vec3.h
+    ray_tracer/color.h
+    ray_tracer/ray.h
     )
 
 # On indique que l'on veut un exécutable "hello" 
