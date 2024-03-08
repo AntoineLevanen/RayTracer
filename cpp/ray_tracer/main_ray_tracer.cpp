@@ -73,14 +73,3 @@ int main(){
     }
     std::clog << "\rDone.               \n";
 }
-
-/*
-in /RayTracer/cpp/build
-make && ./ray_tracer > image.ppm
-*/
-
-/*
-
-4. Rays, a Simple Camera, and Backgroundcpp
-
-*/
