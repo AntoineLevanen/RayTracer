@@ -24,4 +24,4 @@ make && ./ray_tracer > image.ppm
 Ray tracing in one weekend : 
 https://raytracing.github.io/books/RayTracingInOneWeekend.html#rays,asimplecamera,andbackground
 
-Current chapter : 6.8 An Interval Class
+Current chapter : 8 Antialiasing
